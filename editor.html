@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow"><title>编辑科研主页 · Chen Zhang</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%23173b49'/%3E%3Ctext x='10' y='29' font-size='30' font-family='Georgia' fill='white'%3Ec%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./styles.css"><link rel="stylesheet" href="./editor.css">
+  <script defer src="./profile.js"></script><script defer src="./files.js"></script><script defer src="./sync.js"></script><script defer src="./files-store.js"></script><script defer src="./files-ui.js"></script><script defer src="./site-source.js"></script><script defer src="./editor.js"></script>
+</head>
+<body class="editor-body">
+  <header class="editor-header"><div><a class="back-link" href="./index.html">← 返回主页</a><h1>编辑科研主页</h1></div><div class="editor-actions"><span id="save-status" role="status" aria-live="polite">草稿仅保存在此浏览器</span><button type="button" class="button" id="download-profile">仅下载文字更新</button><button type="button" class="button primary-button" id="download-site">下载完整网站包</button></div></header>
+  <main class="editor-layout">
+    <div class="editing-panel">
+      <div class="editor-notice">填写后即可预览。有上传文件时，请「下载完整网站包」，解压后把网站文件和附件一起上传到 GitHub。只改文字也可下载 <strong>profile.js</strong> 更新。</div>
+      <div class="editing-toolbar"><label for="edit-language">正在编辑</label><select id="edit-language"><option value="zh">中文内容</option><option value="en">English content</option></select></div>
+      <section class="sync-panel" aria-label="双语内容同步"><div class="sync-heading"><strong>双语内容同步</strong><span id="sync-status" role="status" aria-live="polite">已开启</span></div><p class="field-hint">修改任一语言，另一语言的对应字段会同步为相同文字，不进行翻译。新增、删除和排序也会同步。需要分别填写中英文时，请暂停同步。</p><div class="sync-actions"><button type="button" class="button" id="toggle-sync" aria-pressed="true">暂停同步</button><button type="button" class="text-button" id="sync-all">用当前语言内容覆盖另一语言</button></div></section>
+      <nav class="editor-tabs" aria-label="编辑栏目"><button type="button" data-section="basic" aria-pressed="true">基本信息</button><button type="button" data-section="research" aria-pressed="false">研究方向</button><button type="button" data-section="publications" aria-pressed="false">论文</button><button type="button" data-section="projects" aria-pressed="false">项目</button><button type="button" data-section="education" aria-pressed="false">经历</button><button type="button" data-section="files" aria-pressed="false">文件库</button></nav>
+      <form id="editor-form" novalidate></form>
+      <section id="file-manager" hidden aria-label="文件库"><div class="library-header"><h2 id="library-location">文件库</h2><span id="library-size"></span></div><p class="field-hint" id="file-storage-status">文件保存在当前浏览器；下载完整网站包可一起保存目录与附件。</p><div class="folder-tools"><button type="button" class="button" id="parent-folder">上一级</button><label class="button file-label">上传文件<input type="file" id="library-upload" multiple disabled></label></div><div class="new-folder"><label for="folder-name">新文件夹名称</label><input id="folder-name" maxlength="120" placeholder="例如：论文数据"><button type="button" class="button" id="create-folder">建立文件夹</button></div><p class="field-hint">编辑器不设单文件大小或文件库总量上限，实际容量取决于浏览器和设备；发布时仍受托管平台限制。同名文件会自动编号。</p><ul id="library-list" class="library-list"></ul></section>
+      <section class="backup-panel"><h2>备份与恢复</h2><p class="field-hint">JSON 只备份文字和文件引用；包含附件的备份请下载完整网站包。清理浏览器数据可能删除草稿和附件。</p><div class="backup-actions"><button type="button" class="button" id="export-json">下载文字备份</button><label class="button file-label">导入文字备份<input id="import-json" type="file" accept=".json,application/json"></label><button type="button" class="text-button" id="restore">重新载入网站文字</button></div><p id="message" class="editor-message" role="status" aria-live="polite"></p></section>
+    </div>
+    <aside class="preview-panel"><div class="preview-toolbar"><div><strong>实时预览</strong><span id="preview-language">中文</span></div><div class="preview-sizes" aria-label="预览尺寸"><button type="button" id="wide-preview" aria-pressed="true">宽屏</button><button type="button" id="mobile-preview" aria-pressed="false">手机</button></div></div><div class="preview-stage"><iframe id="site-preview" title="科研主页实时预览" src="./index.html?preview=1&lang=zh"></iframe></div></aside>
+  </main>
+  <dialog id="confirm-dialog" aria-labelledby="confirm-title" aria-describedby="confirm-text"><form method="dialog"><h2 id="confirm-title">确认更改</h2><p id="confirm-text"></p><div class="dialog-actions"><button class="button" value="cancel" autofocus>取消</button><button class="button primary-button" value="confirm">确认</button></div></form></dialog>
+</body>
+</html>
