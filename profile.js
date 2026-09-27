@@ -156,6 +156,32 @@ window.PROFILE = {
     ],
     "publications": [
       {
+        "title": "A variation of the Morris constant term",
+        "authors": "Guoce Xin, Chen Zhang",
+        "venue": "Electron. J. Comb., Accepted",
+        "year": "2026",
+        "note": "",
+        "url": "",
+        "code": "",
+        "data": "",
+        "bibtex": "",
+        "attachments": [],
+        "_syncId": "de98f2e1-5387-4536-8d36-64d8264af7ca"
+      },
+      {
+        "title": "A proof of Xin-Zhang's tridiagonal determinant conjecture",
+        "authors": "Jiaqiang Hu, Chen Zhang",
+        "venue": "Bull. Aust. Math. Soc., Published online 2026: 1-7",
+        "year": "2026",
+        "note": "",
+        "url": "http://dx.doi.org/10.1017/S0004972726101993",
+        "code": "",
+        "data": "",
+        "bibtex": "",
+        "attachments": [],
+        "_syncId": "e5b0084a-ebe1-411d-ada6-10bffd7889b3"
+      },
+      {
         "title": "A polynomial time algorithm for Sylvester waves when entries are bounded",
         "authors": "Guoce Xin, Chen Zhang",
         "venue": "Adv. Appl. Math. 170 (2025), 102931",
@@ -206,32 +232,6 @@ window.PROFILE = {
         "data": "",
         "bibtex": "",
         "attachments": []
-      },
-      {
-        "title": "A proof of Xin-Zhang's tridiagonal determinant conjecture",
-        "authors": "Jiaqiang Hu, Chen Zhang",
-        "venue": "Bull. Aust. Math. Soc., Published online 2026: 1-7",
-        "year": "2026",
-        "note": "",
-        "url": "http://dx.doi.org/10.1017/S0004972726101993",
-        "code": "",
-        "data": "",
-        "bibtex": "",
-        "attachments": [],
-        "_syncId": "e5b0084a-ebe1-411d-ada6-10bffd7889b3"
-      },
-      {
-        "title": "A variation of the Morris constant term",
-        "authors": "Guoce Xin, Chen Zhang",
-        "venue": "Electron. J. Comb., Accepted",
-        "year": "2026",
-        "note": "",
-        "url": "",
-        "code": "",
-        "data": "",
-        "bibtex": "",
-        "attachments": [],
-        "_syncId": "de98f2e1-5387-4536-8d36-64d8264af7ca"
       },
       {
         "_syncId": "65ad291b-bf79-4240-85f5-347d61ec7521",

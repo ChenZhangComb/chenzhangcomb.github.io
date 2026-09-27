@@ -59,7 +59,7 @@
     }else{
       const items=draft[language][active];
       form.innerHTML=items.map((r,i)=>`<section class="record"><header class="record-header"><h3>${kinds[active]} ${String(i+1).padStart(2,'0')}</h3><div class="record-actions"><button type="button" class="small-button" data-up="${i}" ${i===0?'disabled':''} aria-label="上移第 ${i+1} 条${kinds[active]}">上移</button><button type="button" class="small-button remove" data-remove="${i}" aria-label="删除第 ${i+1} 条${kinds[active]}">删除</button></div></header>${fields[active].map(([k,label,type])=>field(i+'-'+k,label,r[k],type,`data-record="${i}" data-sync-id="${r._syncId}" data-field="${k}"`)).join('')}${active==='publications'&&fileManager?fileManager.paperControls(r):''}</section>`).join('') || `<div class="editor-empty">还没有${kinds[active]}。开启自动同步后，新增条目会同时出现在两种语言中。</div>`;
-      form.innerHTML+=`<button type="button" class="button" data-add>＋ 添加${kinds[active]}</button><p class="field-hint">自动同步开启时，新增、删除和上移会同步到另一语言。</p>`;
+      form.innerHTML+=`<button type="button" class="button" data-add>＋ 添加${kinds[active]}</button><p class="field-hint">${active==='publications'?'主页与预览按年份从新到旧显示；同一年保留此列表的手动顺序，未填写年份的论文显示在最后。':''}自动同步开启时，新增、删除和上移会同步到另一语言。</p>`;
     }
   }
   form.addEventListener('submit',e=>e.preventDefault());

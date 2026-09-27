@@ -18,6 +18,14 @@
     }
     return profile;
   }
+  function alignSharedOrder(profile,from,group){
+    const source=profile[from][group],target=profile[other(from)][group];
+    const targetById=new Map(target.map(item=>[item._syncId,item]));
+    const ordered=source.filter(item=>targetById.has(item._syncId)).map(item=>targetById.get(item._syncId));
+    const sharedIds=new Set(ordered.map(item=>item._syncId));let next=0;
+    // Keep target-only records in their original slots and preserve every record's text.
+    for(let i=0;i<target.length;i++)if(sharedIds.has(target[i]._syncId))target[i]=ordered[next++];
+  }
   class Controller{
     constructor({profile,enabled=true,onChange=()=>{}}){this.profile=migrate(profile);this.enabled=enabled;this.onChange=onChange;}
     setProfile(profile){this.profile=migrate(profile);}
@@ -30,6 +38,7 @@
       if(this.enabled&&!dest){
         if(this.profile[other(from)][ref.group].length>=500){this.enabled=false;this.onChange();throw Error('当前修改已保存，但另一语言的栏目已满 500 条，未能同步。同步已暂停；删除多余条目后可重新开启。');}
         dest=clone(source);this.profile[other(from)][ref.group].push(dest);
+        alignSharedOrder(this.profile,from,ref.group);
       }
       if(this.enabled)dest[ref.field]=value&&typeof value==='object'?clone(value):value;
       this.onChange();
@@ -38,7 +47,7 @@
       if(this.profile[from][group].length>=500||(this.enabled&&this.profile[other(from)][group].length>=500))throw Error('每个栏目最多支持 500 条内容。');
       const item={_syncId:newId(),...Object.fromEntries(fields[group].map(field=>[field,field==='attachments'?[]:'']))};
       this.profile[from][group].push(item);
-      if(this.enabled)this.profile[other(from)][group].push(clone(item));
+      if(this.enabled){this.profile[other(from)][group].push(clone(item));alignSharedOrder(this.profile,from,group);}
       this.onChange();return item;
     }
     remove(from,group,itemId){
@@ -47,12 +56,8 @@
     }
     moveUp(from,group,itemId){
       const arr=this.profile[from][group],index=arr.findIndex(item=>item._syncId===itemId);if(index<1)return;
-      const beforeId=arr[index-1]._syncId;
       [arr[index-1],arr[index]]=[arr[index],arr[index-1]];
-      if(this.enabled){
-        const target=this.profile[other(from)][group],current=target.findIndex(item=>item._syncId===itemId),before=target.findIndex(item=>item._syncId===beforeId);
-        if(current>=0&&before>=0&&current>before){const [item]=target.splice(current,1);target.splice(before,0,item);}
-      }
+      if(this.enabled)alignSharedOrder(this.profile,from,group);
       this.onChange();
     }
     syncAll(from){
