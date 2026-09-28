@@ -14,7 +14,7 @@ window.PROFILE = {
     "affiliation": "南开大学",
     "location": "",
     "intro": "组合数学",
-    "bio": "我目前在南开大学，研究方向为组合数学。",
+    "bio": "张晨，博士毕业于首都师范大学。现为南开大学博士后，研究方向为组合数学。",
     "research": [
       {
         "_syncId": "35f6ec66-1455-42e7-aa19-be0218c286f4",
@@ -146,7 +146,7 @@ window.PROFILE = {
     "affiliation": "Nankai University",
     "location": "",
     "intro": "Combinatorics",
-    "bio": "I am at Nankai University. My research focuses on combinatorics.",
+    "bio": "Chen Zhang, Received a Ph.D. from Capital Normal University. Currently a postdoctoral fellow at Nankai University, with research focused on combinatorics.",
     "research": [
       {
         "_syncId": "35f6ec66-1455-42e7-aa19-be0218c286f4",
