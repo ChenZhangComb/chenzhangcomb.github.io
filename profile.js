@@ -1,4 +1,3 @@
-// 通过 editor.html 编辑。
 window.PROFILE = {
   "schemaVersion": 2,
   "defaultLanguage": "en",

@@ -8,6 +8,8 @@
   const other=lang=>lang==='zh'?'en':'zh';
   const validId=value=>typeof value==='string'&&/^[a-zA-Z0-9_-]{1,80}$/.test(value);
   const newId=()=>typeof crypto!=='undefined'&&crypto.randomUUID?crypto.randomUUID():'r-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2);
+  const publicationYear=paper=>Number(String(paper?.year||'').match(/\b\d{4}\b/)?.[0]||0);
+  function orderedPublications(items){return (Array.isArray(items)?items:[]).map((paper,index)=>({paper,index})).sort((a,b)=>publicationYear(b.paper)-publicationYear(a.paper)||a.index-b.index).map(row=>row.paper);}
   function migrate(profile){
     for(const group of groups){
       const a=profile.zh[group],b=profile.en[group];
@@ -27,9 +29,13 @@
     for(let i=0;i<target.length;i++)if(sharedIds.has(target[i]._syncId))target[i]=ordered[next++];
   }
   class Controller{
-    constructor({profile,enabled=true,onChange=()=>{}}){this.profile=migrate(profile);this.enabled=enabled;this.onChange=onChange;}
-    setProfile(profile){this.profile=migrate(profile);}
-    setEnabled(enabled){this.enabled=Boolean(enabled);this.onChange();}
+    constructor({profile,enabled=true,onChange=()=>{},orderFrom='zh'}){this.profile=migrate(profile);this.enabled=enabled;this.onChange=onChange;this.normalizePublicationOrder(orderFrom);}
+    normalizePublicationOrder(from='zh'){
+      for(const lang of languages)this.profile[lang].publications=orderedPublications(this.profile[lang].publications);
+      if(this.enabled){alignSharedOrder(this.profile,languages.includes(from)?from:'zh','publications');const target=other(languages.includes(from)?from:'zh');this.profile[target].publications=orderedPublications(this.profile[target].publications);}
+    }
+    setProfile(profile,from='zh'){this.profile=migrate(profile);this.normalizePublicationOrder(from);}
+    setEnabled(enabled,from='zh'){this.enabled=Boolean(enabled);this.normalizePublicationOrder(from);this.onChange();}
     get(lang,ref){return ref.group?this.profile[lang][ref.group].find(item=>item._syncId===ref.id):this.profile[lang];}
     edit(from,ref,value){
       const source=this.get(from,ref);if(!source)return;
@@ -41,6 +47,7 @@
         alignSharedOrder(this.profile,from,ref.group);
       }
       if(this.enabled)dest[ref.field]=value&&typeof value==='object'?clone(value):value;
+      if(ref.group==='publications')this.normalizePublicationOrder(from);
       this.onChange();
     }
     add(from,group){
@@ -48,6 +55,7 @@
       const item={_syncId:newId(),...Object.fromEntries(fields[group].map(field=>[field,field==='attachments'?[]:'']))};
       this.profile[from][group].push(item);
       if(this.enabled){this.profile[other(from)][group].push(clone(item));alignSharedOrder(this.profile,from,group);}
+      if(group==='publications')this.normalizePublicationOrder(from);
       this.onChange();return item;
     }
     remove(from,group,itemId){
@@ -55,17 +63,21 @@
       this.onChange();
     }
     moveUp(from,group,itemId){
+      if(group==='publications')this.normalizePublicationOrder(from);
       const arr=this.profile[from][group],index=arr.findIndex(item=>item._syncId===itemId);if(index<1)return;
+      if(group==='publications'&&publicationYear(arr[index])!==publicationYear(arr[index-1]))return;
       [arr[index-1],arr[index]]=[arr[index],arr[index-1]];
       if(this.enabled)alignSharedOrder(this.profile,from,group);
+      if(group==='publications')this.normalizePublicationOrder(from);
       this.onChange();
     }
     syncAll(from){
       const target=other(from);
       for(const field of basics)this.profile[target][field]=this.profile[from][field];
       for(const group of groups)this.profile[target][group]=clone(this.profile[from][group]);
+      this.normalizePublicationOrder(from);
       this.onChange();
     }
   }
-  return {Controller,migrate,fields,basics,groups};
+  return {Controller,migrate,fields,basics,groups,publicationYear,orderedPublications};
 });

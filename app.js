@@ -26,7 +26,7 @@
     const p={...data,...data[language],language};
     const l=labels[p.language] || labels.zh;
     // Newest year first; equal or missing years retain the editor's manual order.
-    const publications=list(p.publications).map((paper,index)=>({paper,index,year:Number(String(paper.year||'').match(/\b\d{4}\b/)?.[0]||0)})).sort((a,b)=>b.year-a.year||a.index-b.index).map(row=>row.paper);
+    const publications=AcademicSync.orderedPublications(list(p.publications));
     document.documentElement.lang=p.language==='en'?'en':'zh-CN';
     document.title=`${p.name || l.home} · ${l.home}`;
     document.querySelector('meta[name="description"]').content=[p.name,p.role,p.affiliation,p.intro].filter(Boolean).join(' · ');
