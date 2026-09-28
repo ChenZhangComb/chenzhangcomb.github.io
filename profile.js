@@ -1,3 +1,4 @@
+// 通过 editor.html 编辑。
 window.PROFILE = {
   "schemaVersion": 2,
   "defaultLanguage": "en",
@@ -16,26 +17,27 @@ window.PROFILE = {
     "bio": "我目前在南开大学，研究方向为组合数学。",
     "research": [
       {
+        "_syncId": "35f6ec66-1455-42e7-aa19-be0218c286f4",
         "title": "组合数学",
-        "description": "",
-        "_syncId": "35f6ec66-1455-42e7-aa19-be0218c286f4"
+        "description": ""
       }
     ],
     "publications": [
       {
+        "_syncId": "de98f2e1-5387-4536-8d36-64d8264af7ca",
         "title": "A variation of the Morris constant term",
         "authors": "Guoce Xin, Chen Zhang",
-        "venue": "Electron. J. Comb., Accepted",
+        "venue": "Electron. J. Comb. 33(3) (2026), # P3.75",
         "year": "2026",
         "note": "",
-        "url": "",
+        "url": "https://doi.org/10.37236/13507",
         "code": "",
         "data": "",
         "bibtex": "",
-        "attachments": [],
-        "_syncId": "de98f2e1-5387-4536-8d36-64d8264af7ca"
+        "attachments": []
       },
       {
+        "_syncId": "e5b0084a-ebe1-411d-ada6-10bffd7889b3",
         "title": "A proof of Xin-Zhang's tridiagonal determinant conjecture",
         "authors": "Jiaqiang Hu, Chen Zhang",
         "venue": "Bull. Aust. Math. Soc., Published online 2026: 1-7",
@@ -45,10 +47,10 @@ window.PROFILE = {
         "code": "",
         "data": "",
         "bibtex": "",
-        "attachments": [],
-        "_syncId": "e5b0084a-ebe1-411d-ada6-10bffd7889b3"
+        "attachments": []
       },
       {
+        "_syncId": "23187305-7726-4a34-ab50-327ad99a82ce",
         "title": "A polynomial time algorithm for Sylvester waves when entries are bounded",
         "authors": "Guoce Xin, Chen Zhang",
         "venue": "Adv. Appl. Math. 170 (2025), 102931",
@@ -58,8 +60,7 @@ window.PROFILE = {
         "code": "",
         "data": "",
         "bibtex": "",
-        "attachments": [],
-        "_syncId": "23187305-7726-4a34-ab50-327ad99a82ce"
+        "attachments": []
       },
       {
         "_syncId": "4d628b95-29d4-4da6-8dfc-1b800348efea",
@@ -148,26 +149,27 @@ window.PROFILE = {
     "bio": "I am at Nankai University. My research focuses on combinatorics.",
     "research": [
       {
+        "_syncId": "35f6ec66-1455-42e7-aa19-be0218c286f4",
         "title": "Combinatorics",
-        "description": "",
-        "_syncId": "35f6ec66-1455-42e7-aa19-be0218c286f4"
+        "description": ""
       }
     ],
     "publications": [
       {
+        "_syncId": "de98f2e1-5387-4536-8d36-64d8264af7ca",
         "title": "A variation of the Morris constant term",
         "authors": "Guoce Xin, Chen Zhang",
-        "venue": "Electron. J. Comb., Accepted",
+        "venue": "Electron. J. Comb. 33(3) (2026), # P3.75",
         "year": "2026",
         "note": "",
-        "url": "",
+        "url": "https://doi.org/10.37236/13507",
         "code": "",
         "data": "",
         "bibtex": "",
-        "attachments": [],
-        "_syncId": "de98f2e1-5387-4536-8d36-64d8264af7ca"
+        "attachments": []
       },
       {
+        "_syncId": "e5b0084a-ebe1-411d-ada6-10bffd7889b3",
         "title": "A proof of Xin-Zhang's tridiagonal determinant conjecture",
         "authors": "Jiaqiang Hu, Chen Zhang",
         "venue": "Bull. Aust. Math. Soc., Published online 2026: 1-7",
@@ -177,10 +179,10 @@ window.PROFILE = {
         "code": "",
         "data": "",
         "bibtex": "",
-        "attachments": [],
-        "_syncId": "e5b0084a-ebe1-411d-ada6-10bffd7889b3"
+        "attachments": []
       },
       {
+        "_syncId": "23187305-7726-4a34-ab50-327ad99a82ce",
         "title": "A polynomial time algorithm for Sylvester waves when entries are bounded",
         "authors": "Guoce Xin, Chen Zhang",
         "venue": "Adv. Appl. Math. 170 (2025), 102931",
@@ -190,8 +192,7 @@ window.PROFILE = {
         "code": "",
         "data": "",
         "bibtex": "",
-        "attachments": [],
-        "_syncId": "23187305-7726-4a34-ab50-327ad99a82ce"
+        "attachments": []
       },
       {
         "_syncId": "4d628b95-29d4-4da6-8dfc-1b800348efea",
